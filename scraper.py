@@ -42,9 +42,12 @@ def scrape_exercise(url):
 
     # 4. FIXED: Image URL (Targeting the animation container)
     # Change 'div.aspect-video img' to the specific class of your animation tag if needed
-    img_elem = soup.select_one('div.aspect-video img')
-    if img_elem and img_elem.has_attr('src'):
-        image = urljoin(url, img_elem['src'])
+    img_elem = soup.find('img', {'data-src': True}) or soup.find('img', {'src': True})
+    
+    if img_elem:
+        # Check if it has a data-src (the real GIF) or a regular src
+        source = img_elem.get('data-src') or img_elem.get('src')
+        image = urljoin(url, source)
     else:
         image = "No image"
 
