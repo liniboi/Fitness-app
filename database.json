@@ -1,1 +1,42 @@
-[]
+[
+    {
+        "name": "Dumbbell Lying Pronation",
+        "description": "The Dumbbell Lying Pronation is an exercise targeting the forearm muscles, specifically focusing on the pronator teres and pronator quadratus. This exercise helps in enhancing wrist stability and forearm strength, which is beneficial for overall grip strength.",
+        "how_to": [
+            "SmartWorkout/",
+            "exercise_library/",
+            "enums.body_part.FOREARMS/",
+            "Dumbbell Lying Pronation",
+            "Lie down on a flat bench with your chest facing upwards.",
+            "Hold a dumbbell in each hand with your arms extended straight above your chest, palms facing each other.",
+            "Slowly rotate your wrists inward so that your palms face downward.",
+            "Hold the pronated position for a moment, ensuring full control over the movement.",
+            "Slowly rotate your wrists back to the starting position with palms facing each other.",
+            "Repeat for the desired number of repetitions.",
+            "Start with a light weight to ensure proper form and prevent strain on the wrists.",
+            "Focus on controlled movements to maximize muscle engagement and avoid injury.",
+            "Keep your elbows slightly bent to reduce tension on the elbow joint.",
+            "Maintain a steady breathing pattern; exhale as you pronate and inhale as you return to the starting position.",
+            "Ensure that only your wrists are moving; keep your arms stable throughout the exercise.",
+            "Using excessive weight leading to uncontrolled motion.",
+            "Allowing elbows to flare out instead of keeping them close to the body.",
+            "Arching the back excessively during the lift.",
+            "Failing to maintain a neutral wrist position.",
+            "Rushing through the movement without full range of motion.",
+            "Neglecting to engage the forearm muscles properly.",
+            "Lifting the dumbbells too high, causing shoulder strain.",
+            "Not keeping the head and neck aligned with the spine.",
+            "One-Arm Dumbbell Supination",
+            "Hanging Scapular Retractions",
+            "One-Arm Neutral Wrist Dumbbell Curl",
+            "One-Arm Wrist Curl Dumbbell",
+            "Farmer Walk",
+            "Dumbbell Standing Wrist Curl",
+            "Unilateral Farmer Walk",
+            "Dumbbell Farmer Carry"
+        ],
+        "muscle": "forearms",
+        "equipment": "dumbbell",
+        "image": "/assets/images/icon-transparent.png"
+    }
+]
