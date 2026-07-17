@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import os
-from urllib.parse import urljoin # Import this to fix image URLs
+from urllib.parse import urljoin
 
 def scrape_exercise(url):
     headers = {'User-Agent': 'Mozilla/5.0'}
@@ -22,18 +22,29 @@ def scrape_exercise(url):
     desc_elem = soup.find('p', class_='text-gray-300 leading-relaxed whitespace-pre-line')
     description = desc_elem.text.strip() if desc_elem else "No description"
 
-    # 3. FIXED: How-to instructions
-    # Look for the section containing the steps. 
-    # Usually, these are inside a specific list container. 
-    # If the class name is unknown, inspect the 'ul' or 'ol' tag wrapping the 'li's.
-    # Replace '.steps-container' with the actual class of the list parent.
-    instructions = [li.text.strip() for li in soup.select('ul.list-decimal li')] 
+    # 3. FIXED: How-to instructions between headings
+    instructions = []
+    # Find the starting heading (adjust the string to match exactly what is on the page)
+    start_node = soup.find(string=lambda text: text and "How to perform" in text)
+    
+    if start_node:
+        # Move to the container holding the text
+        current = start_node.find_parent()
+        # Iterate through siblings until we hit "What muscles work"
+        for sibling in current.find_next_siblings():
+            if "What muscles work" in sibling.get_text():
+                break
+            # Collect list items or text paragraphs
+            if sibling.name in ['ul', 'ol']:
+                instructions.extend([li.text.strip() for li in sibling.find_all('li')])
+            elif sibling.name == 'p':
+                instructions.append(sibling.text.strip())
 
-    # 4. FIXED: Image URL (handling relative paths)
-    img_elem = soup.find('img')
+    # 4. FIXED: Image URL (Targeting the animation container)
+    # Change 'div.aspect-video img' to the specific class of your animation tag if needed
+    img_elem = soup.select_one('div.aspect-video img')
     if img_elem and img_elem.has_attr('src'):
-        image_relative = img_elem['src']
-        image = urljoin(url, image_relative) # Combines base URL with the relative path
+        image = urljoin(url, img_elem['src'])
     else:
         image = "No image"
 
@@ -51,20 +62,17 @@ def scrape_exercise(url):
     }
 
 def append_to_json(new_data, filename='database.json'):
-    # Load existing data
     if os.path.exists(filename):
         with open(filename, 'r') as f:
             try:
                 data = json.load(f)
             except json.JSONDecodeError:
-                data = [] # Handle empty or corrupt file
+                data = []
     else:
         data = []
 
-    # Append new item
     data.append(new_data)
 
-    # Save back to file
     with open(filename, 'w') as f:
         json.dump(data, f, indent=4)
 
