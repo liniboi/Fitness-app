@@ -38,5 +38,13 @@
         "muscle": "forearms",
         "equipment": "dumbbell",
         "image": "/assets/images/icon-transparent.png"
+    },
+    {
+        "name": "Dumbbell Lying Pronation",
+        "description": "The Dumbbell Lying Pronation is an exercise targeting the forearm muscles, specifically focusing on the pronator teres and pronator quadratus. This exercise helps in enhancing wrist stability and forearm strength, which is beneficial for overall grip strength.",
+        "how_to": [],
+        "muscle": "forearms",
+        "equipment": "dumbbell",
+        "image": "https://smartworkout.app/assets/images/icon-transparent.png"
     }
 ]
