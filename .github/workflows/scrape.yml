@@ -1,1 +1,21 @@
-
+name: Scrape Data
+on: [push] # Runs whenever you push code
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with: {python-version: '3.9'}
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+      - name: Run script
+        run: python scraper.py
+      - name: Commit results
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add database.json
+          git commit -m "Automated scrape update"
+          git push
